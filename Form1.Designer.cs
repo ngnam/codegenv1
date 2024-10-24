@@ -42,12 +42,12 @@
             this.splitContainer4 = new System.Windows.Forms.SplitContainer();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.lstColumns = new System.Windows.Forms.CheckedListBox();
             this.lstTables = new System.Windows.Forms.CheckedListBox();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.richTextBox2 = new System.Windows.Forms.RichTextBox();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -132,10 +132,16 @@
             // 
             // splitContainer1
             // 
+            this.splitContainer1.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.splitContainer1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer1.Location = new System.Drawing.Point(0, 24);
             this.splitContainer1.Name = "splitContainer1";
             this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.Enabled = false;
             // 
             // splitContainer1.Panel2
             // 
@@ -160,12 +166,13 @@
             this.splitContainer2.Panel2.Controls.Add(this.textBox1);
             this.splitContainer2.Panel2.Controls.Add(this.label1);
             this.splitContainer2.Panel2.Controls.Add(this.button1);
-            this.splitContainer2.Size = new System.Drawing.Size(975, 585);
-            this.splitContainer2.SplitterDistance = 520;
+            this.splitContainer2.Size = new System.Drawing.Size(973, 583);
+            this.splitContainer2.SplitterDistance = 518;
             this.splitContainer2.TabIndex = 0;
             // 
             // splitContainer3
             // 
+            this.splitContainer3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.splitContainer3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer3.Location = new System.Drawing.Point(0, 0);
             this.splitContainer3.Name = "splitContainer3";
@@ -177,12 +184,13 @@
             // splitContainer3.Panel2
             // 
             this.splitContainer3.Panel2.Controls.Add(this.richTextBox1);
-            this.splitContainer3.Size = new System.Drawing.Size(975, 520);
-            this.splitContainer3.SplitterDistance = 486;
+            this.splitContainer3.Size = new System.Drawing.Size(973, 518);
+            this.splitContainer3.SplitterDistance = 257;
             this.splitContainer3.TabIndex = 0;
             // 
             // splitContainer4
             // 
+            this.splitContainer4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.splitContainer4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer4.Location = new System.Drawing.Point(0, 0);
             this.splitContainer4.Name = "splitContainer4";
@@ -190,55 +198,60 @@
             // 
             // splitContainer4.Panel1
             // 
+            this.splitContainer4.Panel1.Controls.Add(this.richTextBox2);
             this.splitContainer4.Panel1.Controls.Add(this.label3);
-            this.splitContainer4.Panel1.Controls.Add(this.label2);
             // 
             // splitContainer4.Panel2
             // 
-            this.splitContainer4.Panel2.Controls.Add(this.lstColumns);
             this.splitContainer4.Panel2.Controls.Add(this.lstTables);
-            this.splitContainer4.Size = new System.Drawing.Size(486, 520);
-            this.splitContainer4.SplitterDistance = 49;
+            this.splitContainer4.Panel2.Controls.Add(this.label2);
+            this.splitContainer4.Size = new System.Drawing.Size(257, 518);
+            this.splitContainer4.SplitterDistance = 99;
             this.splitContainer4.TabIndex = 0;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
+            this.label3.Dock = System.Windows.Forms.DockStyle.Top;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(238, 27);
+            this.label3.Location = new System.Drawing.Point(0, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(95, 13);
+            this.label3.Size = new System.Drawing.Size(248, 13);
             this.label3.TabIndex = 0;
-            this.label3.Text = "List Of Columns";
+            this.label3.Text = "Check Tables in List (table1;table2;table3)";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
+            this.label2.Dock = System.Windows.Forms.DockStyle.Top;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(3, 27);
+            this.label2.Location = new System.Drawing.Point(0, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(86, 13);
             this.label2.TabIndex = 0;
             this.label2.Text = "List Of Tables";
             // 
-            // lstColumns
-            // 
-            this.lstColumns.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lstColumns.FormattingEnabled = true;
-            this.lstColumns.Location = new System.Drawing.Point(241, 0);
-            this.lstColumns.Name = "lstColumns";
-            this.lstColumns.Size = new System.Drawing.Size(245, 467);
-            this.lstColumns.TabIndex = 1;
-            // 
             // lstTables
             // 
-            this.lstTables.Dock = System.Windows.Forms.DockStyle.Left;
+            this.lstTables.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.lstTables.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lstTables.FormattingEnabled = true;
-            this.lstTables.Location = new System.Drawing.Point(0, 0);
+            this.lstTables.Location = new System.Drawing.Point(0, 13);
             this.lstTables.Name = "lstTables";
-            this.lstTables.Size = new System.Drawing.Size(241, 467);
+            this.lstTables.Size = new System.Drawing.Size(255, 400);
             this.lstTables.TabIndex = 0;
             this.lstTables.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.lstTables_ItemCheck);
+            // 
+            // richTextBox1
+            // 
+            this.richTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.richTextBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.richTextBox1.Location = new System.Drawing.Point(0, 0);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.Size = new System.Drawing.Size(710, 516);
+            this.richTextBox1.TabIndex = 0;
+            this.richTextBox1.Text = "";
+            this.richTextBox1.TextChanged += new System.EventHandler(this.richTextBox1_TextChanged);
             // 
             // textBox1
             // 
@@ -266,14 +279,15 @@
             this.button1.Text = "Save";
             this.button1.UseVisualStyleBackColor = true;
             // 
-            // richTextBox1
+            // richTextBox2
             // 
-            this.richTextBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.richTextBox1.Location = new System.Drawing.Point(0, 0);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(485, 520);
-            this.richTextBox1.TabIndex = 0;
-            this.richTextBox1.Text = "";
+            this.richTextBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.richTextBox2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.richTextBox2.Location = new System.Drawing.Point(0, 13);
+            this.richTextBox2.Name = "richTextBox2";
+            this.richTextBox2.Size = new System.Drawing.Size(255, 84);
+            this.richTextBox2.TabIndex = 1;
+            this.richTextBox2.Text = "";
             // 
             // Form1
             // 
@@ -303,6 +317,7 @@
             this.splitContainer4.Panel1.ResumeLayout(false);
             this.splitContainer4.Panel1.PerformLayout();
             this.splitContainer4.Panel2.ResumeLayout(false);
+            this.splitContainer4.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer4)).EndInit();
             this.splitContainer4.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -323,7 +338,6 @@
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.SplitContainer splitContainer2;
         private System.Windows.Forms.SplitContainer splitContainer3;
-        private System.Windows.Forms.CheckedListBox lstColumns;
         private System.Windows.Forms.CheckedListBox lstTables;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label1;
@@ -332,6 +346,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.RichTextBox richTextBox2;
     }
 }
 

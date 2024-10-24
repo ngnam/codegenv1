@@ -106,8 +106,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Templates\" />
+    <Content Include="Templates\Block_Insert_Table_Template.txt" />
+    <Content Include="Templates\Source_Trigger_On_Table_Template.txt" />
+    <Content Include="Templates\Targer_InsertDataProcedure_Template.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

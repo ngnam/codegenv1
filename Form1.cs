@@ -137,28 +137,28 @@ namespace CodeGeneratorV1
                 var lstColumnsOfTable = GetColumns(itemName, connectionString);
                 if (lstColumnsOfTable.Rows.Count > 0)
                 {
-                    this.lstColumns.DataSource = null;
-                    var columnOfTables = new List<ColumnOfTable>();
-                    foreach (DataRow row in lstColumnsOfTable.Rows)
-                    {
-                        columnOfTables.Add(new ColumnOfTable(int.Parse(row["Id"].ToString()), row["ColumnName"].ToString(), row["DataType"].ToString()));
-                    }
-                    if (columnOfTables.Any())
-                    {
-                        this.lstColumns.DataSource = columnOfTables;
-                        this.lstColumns.DisplayMember = "ColumnName";
-                        this.lstColumns.ValueMember = "Id";
+                    ////this.lstColumns.DataSource = null;
+                    //var columnOfTables = new List<ColumnOfTable>();
+                    //foreach (DataRow row in lstColumnsOfTable.Rows)
+                    //{
+                    //    columnOfTables.Add(new ColumnOfTable(int.Parse(row["Id"].ToString()), row["ColumnName"].ToString(), row["DataType"].ToString()));
+                    //}
+                    //if (columnOfTables.Any())
+                    //{
+                    //    this.lstColumns.DataSource = columnOfTables;
+                    //    this.lstColumns.DisplayMember = "ColumnName";
+                    //    this.lstColumns.ValueMember = "Id";
 
-                        for (int i = 0; i < this.lstColumns.Items.Count; i++)
-                        {
-                            this.lstColumns.SetItemChecked(i, true);
-                        }
-                    }
+                    //    for (int i = 0; i < this.lstColumns.Items.Count; i++)
+                    //    {
+                    //        this.lstColumns.SetItemChecked(i, true);
+                    //    }
+                    //}
                 }
             }
             else if (newState == CheckState.Unchecked)
             {
-                this.lstColumns.DataSource = null;
+                //this.lstColumns.DataSource = null;
             }
         }
 
@@ -212,6 +212,11 @@ ORDER BY ORDINAL_POSITION ASC;";
                 dt.AcceptChanges();
             }
             return dt;
+        }
+
+        private void richTextBox1_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

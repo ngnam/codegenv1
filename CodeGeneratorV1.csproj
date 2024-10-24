@@ -108,6 +108,7 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Content Include="Templates\tut1.txt" />
     <Content Include="Templates\Block_Insert_Table_Template.txt" />
     <Content Include="Templates\Source_Trigger_On_Table_Template.txt" />
     <Content Include="Templates\Targer_InsertDataProcedure_Template.txt" />

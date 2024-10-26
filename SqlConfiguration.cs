@@ -9,10 +9,10 @@ namespace CodeGeneratorV1
     public class SqlConfiguration
     {
         //[Configuration]
-        //SqlServerName=220.165.10.199
-        //UserName=os_iso20022
-        //Password = Abc@12345
-        //DatabaseName=MizuhoData
+        //SqlServerName=<your IP>
+        //UserName=<sqluser>
+        //Password =<sqlpassword>
+        //DatabaseName=<databaseName>
         public string SqlServerName { get; set; }
         public string UserName { get; set; }
         public string Password { get; set; }

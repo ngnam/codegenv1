@@ -34,6 +34,11 @@ namespace CodeGeneratorV1
             //connectionString = $"Server={sqlConfiguration.SqlServerName},1433;Database={sqlConfiguration.DatabaseName};User Id={sqlConfiguration.UserName};Password={sqlConfiguration.Password};";
         }
 
+        public static string GetConnectionString(SqlConfiguration sqlConfiguration)
+        {
+            return $"Server={sqlConfiguration.SqlServerName},1433;Database={sqlConfiguration.DatabaseName};User Id={sqlConfiguration.UserName};Password={sqlConfiguration.Password};";
+        }
+
         public static bool CheckConnectionString(string connectionString)
         {
             try
@@ -79,7 +84,7 @@ namespace CodeGeneratorV1
             DataTable dt = new DataTable("Columns");
             dt.Columns.Add("Id", typeof(int));
             dt.Columns.Add("DataField", typeof(string));
-            dt.Columns.Add("IsPrimaryKey", typeof(bool));
+            dt.Columns.Add("IsPrimaryKey", typeof(string));
             dt.Columns.Add("DataType", typeof(string));
             dt.Columns.Add("MaxLength", typeof(int));
             dt.Columns.Add("Position", typeof(int));
@@ -94,11 +99,11 @@ ELSE c.DATA_TYPE + '(' + CAST(ISNULL(c.CHARACTER_MAXIMUM_LENGTH, '') AS VARCHAR(
 END AS DATA_TYPE,
 c.CHARACTER_MAXIMUM_LENGTH,
 c.ORDINAL_POSITION,
-CASE WHEN k.COLUMN_NAME = c.COLUMN_NAME THEN 1
-ELSE 0
+CASE WHEN k.COLUMN_NAME = c.COLUMN_NAME THEN 'true'
+ELSE 'false'
 END AS IS_PRIMARY_KEY
 FROM INFORMATION_SCHEMA.COLUMNS c
-INNER JOIN INFORMATION_SCHEMA.KEY_COLUMN_USAGE k on c.TABLE_NAME = k.TABLE_NAME
+INNER JOIN INFORMATION_SCHEMA.KEY_COLUMN_USAGE k on c.TABLE_NAME = k.TABLE_NAME AND k.CONSTRAINT_NAME LIKE 'PK%'
 WHERE c.TABLE_NAME = @TableName 
 ORDER BY c.ORDINAL_POSITION ASC;";
                 using (SqlCommand cmd = new SqlCommand(query, conn))
@@ -176,7 +181,7 @@ ORDER BY c.ORDINAL_POSITION ASC;";
             {
                 using (var saveFileDialog = new SaveFileDialog())
                 {
-                    saveFileDialog.Filter = "Text Files|*.txt|All Files|*.*";
+                    saveFileDialog.Filter = "SQL Files|*.sql|Text Files|*.txt|All Files|*.*";
                     if (saveFileDialog.ShowDialog() == DialogResult.OK)
                     {
                         var filePath = saveFileDialog.FileName;

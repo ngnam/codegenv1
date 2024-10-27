@@ -4,7 +4,7 @@
 
 IF EXISTS (SELECT 1 FROM @msgBody.nodes('/Deleted_{{TableName}}') AS D(r))
 BEGIN
-	DELETE FROM {{TableName}}
+	DELETE FROM [{{TableName}}]
 	WHERE {{PrimaryKey}} = (
 	SELECT
 		D.r.query('/Deleted_{{TableName}}/{{PrimaryKey}}').value('.[1]', '{{PrimaryDataType}}') AS {{PrimaryDataType}}
@@ -12,10 +12,10 @@ BEGIN
 END
 IF EXISTS (SELECT 1 FROM @msgBody.nodes('/Inserted_{{TableName}}') AS T(r))
 BEGIN
-	INSERT INTO {{TableName}}
-		({{PublishedColumnsInsert}})
+	INSERT INTO [{{TableName}}]
+({{PublishedColumnsInsert}})
 		SELECT
-		({{PublishedColumnsSelect}})
+{{PublishedColumnsSelect}}
 	FROM @msgBody.nodes('/Inserted_{{TableName}}') AS T(r);
 END
 

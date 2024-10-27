@@ -11,8 +11,10 @@ namespace CodeGeneratorV1
         public int Id { get; set; }
         public string Name { get; set; }
         public ICollection<Column> Columns { get; set; }
-        public Table()
+        public Table(int id, string name)
         {
+            Id = id;
+            Name = name;
             Columns = new HashSet<Column>();
         }
     }

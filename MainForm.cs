@@ -125,11 +125,17 @@ namespace CodeGeneratorV1
             this.tabControl1.SelectedTab = tabTrigger;
             List<Table> _tableToGenCodes = new List<Table>();
             var selectedItems = this.clbTables.CheckedItems;
+            if (selectedItems.Count == 0)
+            {
+                MessageBox.Show("Please select table.");
+                return;
+            }
             if (selectedItems.Count > 0)
             {
                 this.genCodeTrigger.Enabled = false;
                 foreach (Table item in selectedItems)
                 {
+                    item.Columns.Clear();
                     var columns = Helpers.GetColumns(item.Name, _connectionString);
                     if (columns.Rows.Count > 0)
                     {
@@ -201,12 +207,18 @@ namespace CodeGeneratorV1
             this.tabControl1.SelectedTab = tabStored;
             List<Table> _tableToGenCodes = new List<Table>();
             var selectedItems = this.clbTables.CheckedItems;
+            if (selectedItems.Count == 0)
+            {
+                MessageBox.Show("Please select table.");
+                return;
+            }
             if (selectedItems.Count > 0)
             {
                 this.genCodeStored.Enabled = false;
                 
                 foreach (Table item in selectedItems)
                 {
+                    item.Columns.Clear();
                     var columns = Helpers.GetColumns(item.Name, _connectionString);
                     if (columns.Rows.Count > 0)
                     {

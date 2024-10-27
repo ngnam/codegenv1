@@ -1,6 +1,10 @@
 USE SourceReplicationDB
 GO
 
+--------------------------------------------------------------------------
+--------------------{{TableName}}
+--------------------------------------------------------------------------
+
 CREATE OR ALTER TRIGGER [dbo].[trgSendItemData_{{TableName}}]
 	ON [dbo].[{{TableName}}]
 	AFTER INSERT, DELETE, UPDATE
@@ -30,3 +34,5 @@ GO
 
 ALTER TABLE [dbo].[{{TableName}}] ENABLE TRIGGER [trgSendItemData_{{TableName}}]
 GO
+--------------------------------------------------------------------------
+

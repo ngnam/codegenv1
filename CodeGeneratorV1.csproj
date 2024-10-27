@@ -111,6 +111,9 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Content Include="bin\Debug\Templates\insert_update.txt" />
+    <Content Include="bin\Debug\Templates\stored_procedure.txt" />
+    <Content Include="bin\Debug\Templates\trigger.txt" />
     <Content Include="Templates\insert_update.txt" />
     <Content Include="Templates\trigger.txt" />
     <Content Include="Templates\stored_procedure.txt" />

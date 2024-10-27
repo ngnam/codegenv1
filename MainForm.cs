@@ -17,7 +17,6 @@ namespace CodeGeneratorV1
     {
         private string _connectionString = "";
         private List<Table> _tables = new List<Table>();
-        private List<Table> _tableToGenCodes = new List<Table>();
 
         public MainForm()
         {
@@ -124,13 +123,19 @@ namespace CodeGeneratorV1
         private void genCodeTrigger_Click(object sender, EventArgs e)
         {
             this.tabControl1.SelectedTab = tabTrigger;
+            List<Table> _tableToGenCodes = new List<Table>();
             var selectedItems = this.clbTables.CheckedItems;
+            if (selectedItems.Count == 0)
+            {
+                MessageBox.Show("Please select table.");
+                return;
+            }
             if (selectedItems.Count > 0)
             {
                 this.genCodeTrigger.Enabled = false;
-                _tableToGenCodes.Clear();
                 foreach (Table item in selectedItems)
                 {
+                    item.Columns.Clear();
                     var columns = Helpers.GetColumns(item.Name, _connectionString);
                     if (columns.Rows.Count > 0)
                     {
@@ -151,12 +156,12 @@ namespace CodeGeneratorV1
                     }
                     _tableToGenCodes.Add(item);
                 }
-                genCodeTrigger_Replace();
+                genCodeTrigger_Replace(_tableToGenCodes);
                 this.genCodeTrigger.Enabled = true;
             }
         }
 
-        private void genCodeTrigger_Replace()
+        private void genCodeTrigger_Replace(List<Table> _tableToGenCodes)
         {
             if (_tableToGenCodes.Count > 0)
             {
@@ -200,13 +205,20 @@ namespace CodeGeneratorV1
         private void genCodeStored_Click(object sender, EventArgs e)
         {
             this.tabControl1.SelectedTab = tabStored;
+            List<Table> _tableToGenCodes = new List<Table>();
             var selectedItems = this.clbTables.CheckedItems;
+            if (selectedItems.Count == 0)
+            {
+                MessageBox.Show("Please select table.");
+                return;
+            }
             if (selectedItems.Count > 0)
             {
                 this.genCodeStored.Enabled = false;
-                _tableToGenCodes.Clear();
+                
                 foreach (Table item in selectedItems)
                 {
+                    item.Columns.Clear();
                     var columns = Helpers.GetColumns(item.Name, _connectionString);
                     if (columns.Rows.Count > 0)
                     {
@@ -227,12 +239,12 @@ namespace CodeGeneratorV1
                     }
                     _tableToGenCodes.Add(item);
                 }
-                genCodStored_Replace();
+                genCodStored_Replace(_tableToGenCodes);
                 this.genCodeStored.Enabled = true;
             }
         }
 
-        private void genCodStored_Replace()
+        private void genCodStored_Replace(List<Table> _tableToGenCodes)
         {
             if (_tableToGenCodes.Count > 0)
             {

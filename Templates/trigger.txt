@@ -1,0 +1,32 @@
+USE SourceReplicationDB
+GO
+
+CREATE OR ALTER TRIGGER [dbo].[trgSendItemData_{{TableName}}]
+	ON [dbo].[{{TableName}}]
+	AFTER INSERT, DELETE, UPDATE
+	AS
+	DECLARE @insert_data XML;
+	DECLARE @delete_data XML;
+	--DECLARE @msgtype sysname;
+	--DECLARE @contract sysname;
+    --DECLARE @TenantId uniqueidentifier;
+	--SELECT @TenantId = Id FROM SaaSTenants WHERE [Name] = '795'; -- HCM = 796	
+	--SET @msgtype = '//ItemsList/ItemMsg'
+	--SET @contract = '//ItemsList/ItemContract'
+	-- @TenantId as [TenantId], [CustomerID], [CustomerAbbr], [CustomerName], [CompanyID],[Address] ,[VATCustomerName] ,[VATCustomerAddr],[IsClosed],[StepCustomerCode]
+	SET @delete_data = (SELECT {{PublishedColumns}}, GETDATE() as [DeletedDate] FROM deleted AS Deleted_tCIM_Customer FOR XML AUTO, ELEMENTS);
+	if @delete_data is not null
+	begin
+		EXEC dbo.SendItemData @delete_data
+	end
+
+	SET @insert_data = (SELECT {{PublishedColumns}}, GETDATE() as [InsertedDate] FROM inserted AS Inserted_tCIM_Customer FOR XML AUTO, ELEMENTS);
+	if @insert_data is not null
+	begin
+		EXEC dbo.SendItemData @insert_data
+	end
+	--SELECT @item_codes;
+GO
+
+ALTER TABLE [dbo].[{{TableName}}] ENABLE TRIGGER [trgSendItemData_{{TableName}}]
+GO

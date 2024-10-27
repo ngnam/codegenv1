@@ -1,0 +1,22 @@
+﻿--------------------------------------------------------------------------
+--------------------{{TableName}}
+--------------------------------------------------------------------------
+
+IF EXISTS (SELECT 1 FROM @msgBody.nodes('/Deleted_{{TableName}}') AS D(r))
+BEGIN
+	DELETE FROM {{TableName}}
+	WHERE {{PrimaryKey}} = (
+	SELECT
+		D.r.query('/Deleted_{{TableName}}/{{PrimaryKey}}').value('.[1]', '{{PrimaryDataType}}') AS {{PrimaryDataType}}
+	FROM @msgBody.nodes('/Deleted_{{TableName}}') AS D(r));
+END
+IF EXISTS (SELECT 1 FROM @msgBody.nodes('/Inserted_{{TableName}}') AS T(r))
+BEGIN
+	INSERT INTO {{TableName}}
+		({{PublishedColumnsInsert}})
+		SELECT
+		({{PublishedColumnsSelect}})
+	FROM @msgBody.nodes('/Inserted_{{TableName}}') AS T(r);
+END
+
+--------------------------------------------------------------------------

@@ -191,11 +191,11 @@ namespace CodeGeneratorV1
         private void saveToFile_Click(object sender, EventArgs e)
         {
             this.saveToFile.Enabled = false;
-            if (tabTrigger.Created && rtxTrigger.Text.Length > 0)
+            if (this.tabControl1.SelectedTab == tabTrigger && rtxTrigger.Text.Length > 0)
             {
                 Helpers.SaveFileTo(rtxTrigger.Text);
             }
-            if (tabStored.Created && rtxStored.Text.Length > 0)
+            if (this.tabControl1.SelectedTab == tabStored && rtxStored.Text.Length > 0)
             {
                 Helpers.SaveFileTo(rtxStored.Text);
             }
